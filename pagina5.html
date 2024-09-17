@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano Semanal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #03B403;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Evita rolagem horizontal */
+        }
+        
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            flex-direction: column; /* Ícones e texto em coluna */
+        }
+
+        .navbar a i {
+            margin-bottom: 5px;
+        }
+
+        .navbar a:hover, .navbar a.active {
+            color: rgb(8, 218, 8);
+        }
+
+        .container {
+            max-width: 90vw;
+            margin: 100px auto 80px auto; /* Espaço para a navbar fixa no rodapé */
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .panel {
+            background-color: #02e039;
+            border-radius: 20px;
+            margin: 10px 0;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            
+        }
+
+        .header {
+            font-size: 6vw;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+            border-bottom: 2px solid #1FF454;
+        }
+
+        .content {
+            display: none;
+            padding: 10px;
+        }
+
+        .text {
+            font-size: 5vw;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            color: black;
+        }
+
+        .text-field {
+            display: none;
+            width: 100%;
+            padding: 10px;
+            font-size: 4vw;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            background-color: #fff;
+            color: #333;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        .text-field:focus {
+            border-color: #03B403;
+            outline: none;
+            box-shadow: 0 0 5px rgba(3, 180, 3, 0.5);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn {
+            background-color: white;
+            color: rgb(0, 255, 0);
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .btn:disabled {
+            background-color:black;
+            cursor: not-allowed;
+        }
+
+        .edit-btn {
+            color: rgb(3, 212, 3);
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                font-size: 8vw;
+            }
+            .text {
+                font-size: 6vw;
+            }
+            .text-field {
+                font-size: 5vw;
+            }
+            .btn {
+                font-size: 4vw;
+            }
+        }
+        h1{
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+        }
+        a{
+            font-size: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Plano semanal</h1>
+    <div class="container">
+        <div id="panel">
+            <!-- JavaScript will dynamically generate the days and their content here -->
+        </div>
+    </div>
+
+    <div class="navbar">
+        <a href="index.html" class="home"><i class="fas fa-home"></i> Home</a>
+        <a href="muscle-page.html" class="treinos"><i class="fas fa-dumbbell"></i> Treinos</a>
+        <a href="nutrição.html" class="nutricao"><i class="fas fa-apple-alt"></i> Nutrição</a>
+        <a href="pagina5.html" class="plano-semanal"><i class="fas fa-calendar-week"></i> Plano</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const diasSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
+            const panel = document.getElementById('panel');
+
+            diasSemana.forEach((dia, i) => {
+                const panelDiv = document.createElement('div');
+                panelDiv.classList.add('panel');
+
+                const header = document.createElement('div');
+                header.classList.add('header');
+                header.textContent = dia;
+                header.addEventListener('click', () => {
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                });
+
+                const content = document.createElement('div');
+                content.classList.add('content');
+
+                const text = document.createElement('div');
+                text.classList.add('text');
+                text.textContent = "Seu treino do dia";
+
+                const textField = document.createElement('input');
+                textField.classList.add('text-field');
+                textField.type = 'text';
+
+                const editButton = document.createElement('button');
+                editButton.classList.add('btn', 'edit-btn');
+                editButton.textContent = 'Editar';
+                editButton.addEventListener('click', () => {
+                    text.style.display = 'none';
+                    textField.style.display = 'block';
+                    editButton.disabled = true;
+                    saveButton.disabled = false;
+                });
+
+                const saveButton = document.createElement('button');
+                saveButton.classList.add('btn');
+                saveButton.textContent = 'Salvar';
+                saveButton.disabled = true;
+                saveButton.addEventListener('click', () => {
+                    text.textContent = textField.value;
+                    text.style.display = 'block';
+                    textField.style.display = 'none';
+                    editButton.disabled = false;
+                    saveButton.disabled = true;
+                });
+
+                const btnGroup = document.createElement('div');
+                btnGroup.classList.add('btn-group');
+                btnGroup.append(editButton, saveButton);
+
+                content.append(text, textField, btnGroup);
+                panelDiv.append(header, content);
+                panel.append(panelDiv);
+            });
+
+            // Função para definir a aba ativa com base no URL
+            window.onload = function() {
+                var path = window.location.pathname;
+                var page = path.split("/").pop();
+                var navbarLinks = document.querySelectorAll(".navbar a");
+
+                navbarLinks.forEach(function(link) {
+                    var href = link.getAttribute("href");
+                    if (href === page) {
+                        link.classList.add("active");
+                    }
+                });
+            };
+        });
+    </script>
+</body>
+</html>

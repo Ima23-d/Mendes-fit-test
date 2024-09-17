@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player de Música</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #03B403;
+            color: #333;
+        }
+        
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        
+        #results {
+            margin-top: 20px;
+        }
+        
+        .song-item {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        h1 {
+            color: white;
+            font-size: 50px;
+        }
+
+        .digitar {
+            width: 200px;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 2px solid #1db954;
+            border-radius: 25px;
+            outline: none;
+            transition: border-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .digitar:focus {
+            border-color: #17a349;
+        }
+        
+        .btn {
+            width: 200px;
+            padding: 10px 15px;
+            margin-top: 10px;
+            background-color: #1db954;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: #17a349;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .modal-content {
+            background-image: url(musica\ gif.gif);
+        }
+
+        #songTitle {
+            color: white;
+        }
+
+        #audioSource {
+            background-color: #03B403;
+        }
+    </style>
+    <div class="container">
+        <h1>Música</h1>
+        <input type="text" id="search" placeholder="Digite o nome da música" class="digitar">
+        <button id="searchButton" class="btn">Buscar</button>
+        <div id="results" style="height: 60px;"></div>
+    </div>
+
+    <!-- Player Modal -->
+    <div id="playerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="songTitle">Título da Música</h2>
+            <audio id="audioPlayer" controls>
+                <source id="audioSource" src="" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const query = document.getElementById('search').value;
+            searchMusic(query);
+        });
+        
+        function searchMusic(query) {
+            const results = document.getElementById('results');
+            results.innerHTML = ''; // Limpa os resultados anteriores
+        
+            // Exemplo de simulação de busca (substituir com uma API real)
+            const fakeDatabase = [
+                { title: 'Música 1', file: 'musica1.mp3' },
+                { title: 'Billie Jean', file: 'Michael Jackson - Billie Jean (Official Video).mp3' },
+                { title: 'Música 3', file: 'musica3.mp3' },
+                { title: 'Please Please Please', file: 'Sabrina Carpenter - Please Please Please (Official Video).mp3' }
+            ];
+        
+            const filteredResults = fakeDatabase.filter(music => music.title.toLowerCase().includes(query.toLowerCase()));
+        
+            filteredResults.forEach(music => {
+                const songItem = document.createElement('div');
+                songItem.className = 'song-item';
+                songItem.textContent = music.title;
+        
+                // Adiciona estilos diretamente via JavaScript
+                songItem.style.padding = '15px';
+                songItem.style.margin = '10px 0';
+                songItem.style.backgroundColor = 'black';
+                songItem.style.borderRadius = '10px';
+                songItem.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                songItem.style.cursor = 'pointer';
+                songItem.style.fontSize = '25px';
+                songItem.style.color = 'white';
+                songItem.style.transition = 'background-color 0.3s ease, transform 0.3s ease';
+        
+                // Abre o player quando o item é clicado
+                songItem.addEventListener('click', function() {
+                    openPlayer(music);
+                });
+        
+                results.appendChild(songItem);
+            });
+        }
+        
+        function openPlayer(music) {
+            const modal = document.getElementById('playerModal');
+            const titleElement = document.getElementById('songTitle');
+            const audioSource = document.getElementById('audioSource');
+            const audioPlayer = document.getElementById('audioPlayer');
+        
+            titleElement.textContent = music.title;
+            audioSource.src = music.file;
+            audioPlayer.load();
+        
+            modal.style.display = "block";
+        }
+        
+        // Fecha o modal quando o usuário clicar no "X"
+        document.querySelector('.close').addEventListener('click', function() {
+            closePlayerModal();
+        });
+        
+        // Fecha o modal quando o usuário clicar fora dele
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('playerModal');
+            if (event.target == modal) {
+                closePlayerModal();
+            }
+        });
+
+        function closePlayerModal() {
+            const modal = document.getElementById('playerModal');
+            const audioPlayer = document.getElementById('audioPlayer');
+
+            modal.style.display = "none";
+            audioPlayer.pause(); // Pausa a música
+            audioPlayer.currentTime = 0; // Reseta a música para o início
+        }
+    </script>
+</body>
+</html>

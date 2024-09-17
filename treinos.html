@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mendes - fit</title>
+    <link rel="shortcut icon" href="favicon_io (6)/android-chrome-512x512.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #03B403;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            max-width: 100%;
+            padding: 20px;
+            margin-bottom: 60px;
+        }
+
+        .form-box,
+        .form-box2,
+        .form-box3,
+        .form-box4,
+        .form-box5,
+        .form-box6,
+        .form-box7 {
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 520px;
+            height: 150px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin: 15px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .form-box {
+            background-image: url('treino de braço.png');
+        }
+
+        .form-box2 {
+            background-image: url('treino de costa.png');
+        }
+
+        .form-box3 {
+            background-image: url('treino de abdomen.png');
+        }
+
+        .form-box4 {
+            background-image: url('treino de perna.png');
+        }
+
+        .form-box5 {
+            background-image: url('treio de peito.png');
+        }
+
+        .form-box6 {
+            background-image: url('treino de ombros.png');
+        }
+
+        .form-box7 {
+            background-image: url("treino de gluteo.jpg");
+        }
+
+        .form-box:hover,
+        .form-box2:hover,
+        .form-box3:hover,
+        .form-box4:hover,
+        .form-box5:hover,
+        .form-box6:hover,
+        .form-box7:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 40px rgba(8, 218, 200, 0.5);
+        }
+
+        .container:hover > .form-box:not(:hover),
+        .container:hover > .form-box2:not(:hover),
+        .container:hover > .form-box3:not(:hover),
+        .container:hover > .form-box4:not(:hover),
+        .container:hover > .form-box5:not(:hover),
+        .container:hover > .form-box6:not(:hover),
+        .container:hover > .form-box7:not(:hover) {
+            filter: blur(10px);
+            transform: scale(0.9);
+        }
+
+        .treinos {
+            font-size: 45px;
+            margin: 10px;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .treinos a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .treinos a:hover {
+            text-decoration: none;
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #03B403;
+            color: white;
+            padding: 20px;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 10px 40px black;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .navbar a i {
+            margin-bottom: 3px;
+            font-size: 20px;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: rgb(8, 218, 8);
+        }
+
+        @media (min-width: 600px) {
+            .navbar a {
+                font-size: 20px;
+            }
+
+            .navbar a i {
+                font-size: 24px;
+            }
+        }
+
+        h1 {
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 50px;
+            color: white;
+        }
+        a{
+            font-size: 30px;
+            font-weight: bold;
+        }
+        ul{
+            text-decoration: none;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <h2>Outros</h2>
+        <hr>
+        <ul>
+            <li><a href="perfil.html"><i class="fas fa-child"></i> Mobilidade</a></li>
+            <li><a href="caminhada.html"><i class="fas fa-walking"></i> Caminhada</a></li>
+            <li><a href="sobre.html"><i class="fas fa-music"></i> Música</a></li>
+        </ul>
+    </div>
+    
+    
+
+    <!-- Main content -->
+    <h1>Treinos<i class="fas fa-bars menu-icon" id="menu-icon"></i></h1>
+    <div class="container">
+        <a href="braço.html" class="form-box">
+            <h1 class="treinos">Treino braço</h1>
+        </a>
+
+        <a href="costa.html" class="form-box2">
+            <h1 class="treinos">Treino costa</h1>
+        </a>
+
+        <a href="abdomen.html" class="form-box3">
+            <h1 class="treinos">Treino abdômen</h1>
+        </a>
+
+        <a href="perna.html" class="form-box4">
+            <h1 class="treinos">Treino pernas</h1>
+        </a>
+
+        <a href="peito.html" class="form-box5">
+            <h1 class="treinos">Treino <br>peito</h1>
+        </a>
+        
+        <a href="ombro.html" class="form-box6">
+            <h1 class="treinos">Treino ombros</h1>
+        </a>
+
+        <a href="gluteo.html" class="form-box7">
+            <h1 class="treinos">Treino de glúteo</h1>
+        </a>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html" class="home"><i class="fas fa-home"></i> Home</a>
+        <a href="treinos.html" class="treinos"><i class="fas fa-dumbbell"></i> Treinos</a>
+        <a href="nutrição.html" class="nutricao"><i class="fas fa-apple-alt"></i> Nutrição</a>
+        <a href="pagina5.html" class="plano-semanal"><i class="fas fa-calendar-week"></i> Plano</a>
+    </div>
+
+    <script>
+        document.getElementById("menu-icon").onclick = function() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("active");
+        };
+
+        document.addEventListener('click', function(event) {
+            var sidebar = document.getElementById("sidebar");
+            var menuIcon = document.getElementById("menu-icon");
+            if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+                sidebar.classList.remove("active");
+            }
+        });
+    </script>
+</body>
+
+</html>

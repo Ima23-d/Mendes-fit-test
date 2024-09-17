@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadados e estilos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Treino</title>
+    <link rel="shortcut icon" href="favicon_io (6)/android-chrome-512x512.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:#03B403;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            
+            margin: auto;
+            background: #03B403;
+            padding: 10px;
+            background-image: url("teste copy.jpg");
+            border-radius: 20px;
+            width: 330px;
+            height: 680px;
+           
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: white;
+        
+        }
+
+        input {
+            width: calc(100% - 24px);
+            padding: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            height: 30px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            border-radius: 20px;
+            width: 330px;
+            height: 40px;
+
+        }
+
+        button:hover {
+            background-color: #218838;
+     
+        }
+
+        .muscle-container {
+            display: flex;
+            flex-direction: column;
+           
+        }
+
+        .muscle-container button {
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .muscle-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .exercise-container {
+            background-color: black;
+            border-radius: 20px;
+            
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: white;
+            width: 300px;
+            height: 70px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            text-align: center;
+            margin-left: -17px;
+        }
+
+        .exercise-container img {
+            width: 180px;
+            height: 125px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .exercise-container p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .back-button {
+            padding: 10px 15px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #c82333;
+            
+        }
+
+        .form-box {
+            background-image: url('treino de braço.png');
+        }
+
+        .container1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            padding: 20px;
+            margin-bottom: 60px;
+        }
+
+
+        .form-box,
+        .form-box2,
+        .form-box3,
+        .form-box4,
+        .form-box5,
+        .form-box6,
+        .form-box7 {
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            
+            height: 90px;
+            width: 500px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin: 15px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            text-decoration: none;
+            margin-left: -18px;
+        }
+
+
+
+        .form-box2 {
+            background-image: url('treino de costa.png');
+        }
+
+        .form-box3 {
+            background-image: url('treino de abdomen.png');
+        }
+
+        .form-box4 {
+            background-image: url('treino de perna.png');
+        }
+
+        .form-box5 {
+            background-image: url('treio de peito.png');
+        }
+
+        .form-box6 {
+            background-image: url('treino de ombros.png');
+        }
+
+        .form-box7 {
+            background-image: url("treino de gluteo.jpg");
+        }
+
+
+        .form-box:hover,
+        .form-box2:hover,
+        .form-box3:hover,
+        .form-box4:hover,
+        .form-box5:hover,
+        .form-box6:hover,
+        .form-box7:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 40px rgba(8, 218, 200, 0.5);
+        }
+
+        .container1:hover > .form-box:not(:hover),
+        .container1:hover > .form-box2:not(:hover),
+        .container1:hover > .form-box3:not(:hover),
+        .container1:hover > .form-box4:not(:hover),
+        .container1:hover > .form-box5:not(:hover),
+        .container1:hover > .form-box6:not(:hover),
+        .container1:hover > .form-box7:not(:hover) {
+            filter: blur(10px);
+            transform: scale(0.9);
+        }
+
+
+
+
+
+        .treinos {
+            font-size: 45px;
+            margin: 10px;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .treinos a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .treinos a:hover {
+            text-decoration: none;
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 250px;
+            height: 100%;
+            background-color: #03B403;
+            color: white;
+            padding: 20px;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 10px 40px black;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .navbar a i {
+            margin-bottom: 3px;
+            font-size: 20px;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: rgb(8, 218, 8);
+        }
+
+        @media (min-width: 600px) {
+            .navbar a {
+                font-size: 20px;
+            }
+
+            .navbar a i {
+                font-size: 24px;
+            }
+        }
+
+        h1 {
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 50px;
+            color: white;
+        }
+        a{
+            font-size: 30px;
+            font-weight: bold;
+        }
+        ul{
+            text-decoration: none;
+        }
+
+
+
+
+        .modal {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 600px;
+            background-color: rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            z-index: 1;
+            transition: transform 0.3s ease-in-out;
+            transform: translateY(100%);
+            overflow-x: hidden;
+        }
+
+        .modal-content {
+            background-color: rgb(0, 0, 0);
+            
+            border: 1px solid #888;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -10px 40px black;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease-in-out;
+            overflow-x: hidden;
+        }
+
+        .close {
+            color: rgb(41, 240, 1);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container2{
+        background-color: transparent;
+        }
+    </style>
+    <div class="container2" id="muscle-page">
+        <h1>Treinos<i class="fas fa-bars menu-icon" id="menu-icon"></i></h1>
+
+        <div class="container1">
+            <a class="form-box" onclick="navigateToExercises('braço')">
+                <h1 class="treinos">Treino braço</h1>
+            </a>
+
+            <a class="form-box2" onclick="navigateToExercises('perna')">
+                <h1 class="treinos">Treino costa</h1>
+            </a>
+
+            <a class="form-box3" onclick="navigateToExercises('abdômen')">
+                <h1 class="treinos">Treino abdômen</h1>
+            </a>
+
+            <a class="form-box4" onclick="navigateToExercises('perna')">
+                <h1 class="treinos">Treino pernas</h1>
+            </a>
+
+            <a class="form-box5" onclick="navigateToExercises('peito')">
+                <h1 class="treinos">Treino peito</h1>
+            </a>
+
+            <a class="form-box6" onclick="navigateToExercises('ombros')">
+                <h1 class="treinos">Treino ombros</h1>
+            </a>
+
+            <a class="form-box7" onclick="navigateToExercises('glúteo')">
+                <h1 class="treinos">Treino de glúteo</h1>
+            </a>
+        </div>
+
+        <div class="sidebar" id="sidebar">
+            <h2>Outros</h2>
+            <hr>
+            <ul>
+                <li><a href="perfil.html"><i class="fas fa-child"></i> Mobilidade</a></li>
+                <li><a href="caminhada.html"><i class="fas fa-walking"></i> Caminhada</a></li>
+                <li><a href="sobre.html"><i class="fas fa-music"></i> Música</a></li>
+            </ul>
+        </div>
+
+        <div class="navbar">
+            <a href="index.html" class="home"><i class="fas fa-home"></i> Home</a>
+            <a href="treinos.html" class="treinos"><i class="fas fa-dumbbell"></i> Treinos</a>
+            <a href="nutrição.html" class="nutricao"><i class="fas fa-apple-alt"></i> Nutrição</a>
+            <a href="pagina5.html" class="plano-semanal"><i class="fas fa-calendar-week"></i> Plano</a>
+        </div>
+    </div>
+
+    <div class="container2" id="exercise-page" style="display:none;">
+        <h1>Exercícios</h1>
+        <div id="exercises-container" onclick="openModal('modal2')"></div>
+        <button class="back-button" onclick="navigateToMusclePage()">Voltar</button>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <div class="cont1">
+                <div class="cont2">
+                    <img src="Braço/Rosca alternada inclinada.gif" alt="">
+                </div>
+                <div class="cont3">
+                    <h1 id="exercises-container">Rosca Alternada Inclinada</h1>
+                    <h1 class="series">3 séries | 12 x</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Scripts para a página 2 -->
+    <script>
+        
+
+
+
+        function updateRangeValue(id) {
+            const value = document.getElementById(id).value;
+            document.getElementById(`${id}-value`).innerText = `${id.charAt(0).toUpperCase() + id.slice(1)}: ${value}${id === 'altura' ? 'm' : 'kg'}`;
+        }
+        const data = [
+            { exercise: 'Rosca direta', body_part: 'braço', sex: 'homem', level_1: 'básico', image_path: 'IMAGEM-rosca-direta-com-halteres-dados.png', gif_img: 'GIF-rosca-biceps-direta-na-barra-ez.webp', peso: 68, altura: 1.68, doenca: 'asma', obj: 'peso' },
+            { exercise: 'Rosca direta', body_part: 'braço', sex: 'mulher', level_1: 'básico', image_path: 'IMAGEM-rosca-direta-com-halteres-dados.png', gif_img: 'GIF-rosca-biceps-direta-na-barra-ez.webp', peso: 68, altura: 1.68, doenca: 'asma', obj: 'estética' },
+            { exercise: 'Tríceps pulley', body_part: 'braço', sex: 'homem', level_1: 'básico', image_path: 'consulta-médica.jpg', gif_img: 'GIF-triceps-puxada-no-pulley.webp', peso: 75, altura: 1.75, doenca: 'nenhuma', obj: 'saúde' },
+            { exercise: 'Rosca martelo', body_part: 'braço', sex: 'homem', level_1: 'básico', image_path: 'consulta-médica.jpg', gif_img: 'GIF-triceps-puxada-no-pulley.webp', peso: 75, altura: 1.75, doenca: 'nenhuma', obj: 'saúde' },
+            { exercise: 'T', body_part: 'peito', sex: 'homem', level_1: 'básico', image_path: 'IMAGEM-triceps-pulley.jpg', gif_img: 'GIF-triceps-puxada-no-pulley.webp', peso: 50, altura: 1.60, doenca: 'nenhuma', obj: 'peso' },
+            // ... adicione mais dados conforme necessário
+        ];
+
+        function gerarPlanoTreino(sexo, nivel, doenca, altura, peso, objetivo) {
+            altura = parseFloat(altura);
+            peso = parseFloat(peso);
+            
+            const alturaMin = altura - 0.15;
+            const alturaMax = altura + 0.15;
+            const pesoMin = peso - 15;
+            const pesoMax = peso + 15;
+
+            const filteredData = data.filter(ex => 
+                ex.sex.toLowerCase() === sexo.toLowerCase() &&
+                ex.obj.toLowerCase() === objetivo.toLowerCase() &&
+                ex.level_1.toLowerCase() === nivel.toLowerCase() &&
+                (ex.doenca.toLowerCase().includes(doenca.toLowerCase()) || ex.doenca === 'nenhuma') &&
+                ex.altura >= alturaMin && ex.altura <= alturaMax &&
+                ex.peso >= pesoMin && ex.peso <= pesoMax
+            );
+
+            const plano = {};
+            ['braço', 'costas', 'abdômen', 'perna', 'peito', 'ombro', 'glúteo'].forEach(part => {
+                const exercises = filteredData.filter(ex => ex.body_part === part).map(ex => ex.exercise);
+                plano[part] = exercises.slice(0, 6);
+            });
+
+            return plano;
+        }
+
+        function getImagePath(exercise) {
+            const row = data.find(ex => ex.exercise === exercise);
+            return row ? row.image_path : "path/to/default_image.jpg";
+        }
+
+        function onGenerateClick() {
+            const sexo = document.getElementById('sexo').value.trim().toLowerCase();
+            const nivel = document.getElementById('nivel').value.trim().toLowerCase();
+            const doenca = document.getElementById('doenca').value.trim().toLowerCase();
+            const altura = document.getElementById('altura').value;
+            const peso = document.getElementById('peso').value;
+            const objetivo = document.getElementById('objetivo').value.trim().toLowerCase();
+
+            window.plano = gerarPlanoTreino(sexo, nivel, doenca, altura, peso, objetivo);
+
+            document.getElementById('input-page').style.display = 'none';
+            document.getElementById('muscle-page').style.display = 'block';
+        }
+
+        function navigateToExercises(part) {
+            const exercises = window.plano[part] || [];
+
+            const exercisesContainer = document.getElementById('exercises-container');
+            exercisesContainer.innerHTML = '';
+
+            exercises.forEach(ex => {
+                const container = document.createElement('div');
+                container.className = 'exercise-container';
+                container.innerHTML = `<img src="${getImagePath(ex)}" alt="${ex}"><p>${ex}</p>`;
+                exercisesContainer.appendChild(container);
+            });
+
+            document.getElementById('muscle-page').style.display = 'none';
+            document.getElementById('exercise-page').style.display = 'block';
+        }
+
+        function navigateToMusclePage() {
+            document.getElementById('exercise-page').style.display = 'none';
+            document.getElementById('muscle-page').style.display = 'block';
+        }
+
+
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.getElementById(modalId).style.transform = 'translateY(0)';
+            
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.transform = 'translateY(100%)';
+            setTimeout(() => {
+                document.getElementById(modalId).style.display = 'none';
+            }, 300);
+        }
+        // Função para verificar se a API de Vibração é suportada
+        function vibrateOnScroll() {
+            if ("vibrate" in navigator) {
+                window.addEventListener('scroll', function() {
+                    navigator.vibrate(100); // Vibra por 100 milissegundos
+                });
+            }
+        }
+
+        // Chamar a função
+        vibrateOnScroll();
+
+
+
+        document.getElementById("menu-icon").onclick = function() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("active");
+        };
+
+        document.addEventListener('click', function(event) {
+            var sidebar = document.getElementById("sidebar");
+            var menuIcon = document.getElementById("menu-icon");
+            if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+                sidebar.classList.remove("active");
+            }
+        });
+
+
+
+
+
+        function navigateToExercises(muscleGroup) {
+            // Esconde a página principal
+            document.getElementById("muscle-page").style.display = "none";
+            // Mostra a página de exercícios
+            document.getElementById("exercise-page").style.display = "block";
+            // Aqui você pode adicionar código para carregar os exercícios específicos do grupo muscular selecionado
+            console.log("Navegando para o treino de:", muscleGroup);
+        }
+
+        // Exemplo de função para voltar à página principal
+        function goBack() {
+            // Mostra a página principal
+            document.getElementById("muscle-page").style.display = "block";
+            // Esconde a página de exercícios
+            document.getElementById("exercise-page").style.display = "none";
+        }
+
+        // Função para abrir o menu lateral
+        document.getElementById("menu-icon").onclick = function() {
+            document.getElementById("sidebar").classList.toggle("active");
+        };
+        
+
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                sexo: params.get('sexo'),
+                nivel: params.get('nivel'),
+                doenca: params.get('doenca'),
+                altura: params.get('altura'),
+                peso: params.get('peso'),
+                objetivo: params.get('objetivo')
+            };
+        }
+    
+        window.onload = function() {
+            const userData = getQueryParams();
+            console.log(userData);
+        }
+    </script>
+</body>
+</html>
